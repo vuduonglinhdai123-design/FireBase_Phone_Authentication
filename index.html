@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Auth</title>
+</head>
+
+<body>
+    <button onclick="signin()" id="sign-in">
+        Sign in width Facebook
+    </button>
+
+    <!-- div section which will be holding the profile pic -->
+    <!-- <div id="profile-pic">
+
+    </div> -->
+
+
+    <!-- div section which will be holding the emaill address -->
+    <!-- <div id="user-email">
+
+    </div> -->
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCJH2Mpb5R2Cr7yz-qXydBUlx4i-nP-aXc",
+    authDomain: "fbauth-81580.firebaseapp.com",
+    projectId: "fbauth-81580",
+    storageBucket: "fbauth-81580.appspot.com",
+    messagingSenderId: "474937569923",
+    appId: "1:474937569923:web:f9dc1fdfdff4454ac421b6",
+    measurementId: "G-BXV2KSZFVY"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+</script>
+
+<script>
+    function signin() {
+    var provider = new firebase.auth.FacebookAuthProvider();
+    firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+            console.log(result)
+            window.location.assign('./qq.html')
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+
+        
+        });
+}
+</script>
+
+
+</html>
