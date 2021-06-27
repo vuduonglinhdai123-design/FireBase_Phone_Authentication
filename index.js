@@ -1,21 +1,60 @@
-function signin() {
-    var provider = new firebase.auth.FacebookAuthProvider();
-    firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-            console.log(result)
-            window.location.assign('./qq.html')
-        })
-        .catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
+window.onload = function() {
+  recaptchaVerifierSimple()
+  recaptchaRender()
+}
 
-        
-        });
+function recaptchaVerifierSimple() {
+  // [START auth_phone_recaptcha_verifier_simple]
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+  // [END auth_phone_recaptcha_verifier_simple]
+}
+
+// Show reCaptcha
+function recaptchaRender() {
+  const recaptchaVerifier = window.recaptchaVerifier;
+
+  // [START auth_phone_recaptcha_render]
+  recaptchaVerifier.render().then((widgetId) => {
+    window.recaptchaWidgetId = widgetId;
+  });
+  // [END auth_phone_recaptcha_render]
+}
+
+
+// Enter phone number
+function phoneSignIn() {
+  // [START auth_phone_signin]
+  const phoneNumber = document.querySelector('.phoneNumber').value;    // ME
+  const appVerifier = window.recaptchaVerifier;
+  firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+      .then((confirmationResult) => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        alert('Message Sent')
+        // user in with confirmationResult.confirm(code).
+        window.confirmationResult = confirmationResult;
+        // ...
+      }).catch((error) => {
+        // Error; SMS not sent
+        // ...
+      });
+  // [END auth_phone_signin]
+}
+
+
+// Verify Code
+function verifyCode() {
+
+  // [START auth_phone_verify_code]
+  var code = document.querySelector('.codeInput').value;            // ME
+  confirmationResult.confirm(code).then((result) => {
+    // User signed in successfully.
+    const user = result.user;
+    alert('ok')
+    // ...
+  }).catch((error) => {
+    alert(error)
+    // User couldn't sign in (bad verification code?)
+    // ...
+  });
+  // [END auth_phone_verify_code]
 }
