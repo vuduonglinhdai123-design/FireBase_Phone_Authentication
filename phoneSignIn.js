@@ -49,6 +49,7 @@ function verifyCode() {
   confirmationResult.confirm(code).then((result) => {
     // User signed in successfully.
     const user = result.user;
+    console.log(user);
     alert('ok')
     // ...
   }).catch((error) => {
@@ -57,4 +58,18 @@ function verifyCode() {
     // ...
   });
   // [END auth_phone_verify_code]
+}
+
+
+
+
+function signOut() {
+  // [START auth_sign_out]
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+    alert('Sign-out successful');
+  }).catch((error) => {
+    // An error happened.
+  });
+  // [END auth_sign_out]
 }

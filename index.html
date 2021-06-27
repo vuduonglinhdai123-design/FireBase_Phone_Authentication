@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -15,11 +16,25 @@
         <form action="">
             <div class="form-group">
                 <label for="formGroupExampleInput">Enter your phone number</label>
-                <input type="text" class="form-control phoneNumber" id="formGroupExampleInput" placeholder="Ex: +84 01234">
+                <input type="text" class="form-control phoneNumber" id="formGroupExampleInput"
+                    placeholder="Ex: +84 01234">
                 <div id="recaptcha-container"></div>
             </div>
+
+<!-- 
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
+            </div> -->
+
             <button type="button" class="btn btn-primary" onclick="phoneSignIn()">Send Code</button>
         </form>
+
         <form class="form-inline">
             <div class="form-group mx-sm-3 mb-2">
                 <input type="text" class="form-control codeInput" id="inputPassword2" placeholder="Enter your code">
@@ -28,11 +43,30 @@
         </form>
     </div>
 
+    <button onclick="signOut()">Sign Out</button>
+
+
+<!-- 
+    
+    <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        
+        <button type="button" class="btn btn-primary" onclick="signUpWithEmailPassword()">Submit</button>
+      </form> -->
 
 </body>
 
 
 <script src="phoneSignIn.js"></script>
+<!-- <script src="passWordSignIn.js"></script> -->
+<script src="chatting.js"></script>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
@@ -58,6 +92,7 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
+    firebase.auth().useDeviceLanguage();
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
